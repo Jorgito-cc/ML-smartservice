@@ -1,0 +1,132 @@
+{
+  "info": {
+    "name": "ML Recomendación API",
+    "description": "Colección para probar el sistema de recomendación de técnicos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5005/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5005",
+          "path": ["health"]
+        },
+        "description": "Verifica que el servicio esté funcionando y el modelo esté cargado"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Info del Servicio",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5005/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5005",
+          "path": [""]
+        },
+        "description": "Obtiene información del servicio y endpoints disponibles"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Recomendar Técnicos - Solicitud 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_solicitud\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5005/recomendar",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5005",
+          "path": ["recomendar"]
+        },
+        "description": "Obtiene recomendaciones de técnicos para la solicitud con ID 1"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Recomendar Técnicos - Solicitud 123",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_solicitud\": 123\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5005/recomendar",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5005",
+          "path": ["recomendar"]
+        },
+        "description": "Obtiene recomendaciones de técnicos para la solicitud con ID 123"
+      },
+      "response": []
+    },
+    {
+      "name": "5. Error - Sin id_solicitud",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5005/recomendar",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5005",
+          "path": ["recomendar"]
+        },
+        "description": "Prueba de error: falta el campo id_solicitud"
+      },
+      "response": []
+    }
+  ]
+}
+
