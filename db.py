@@ -10,7 +10,7 @@ def get_connection():
     return psycopg2.connect(
         host=config("DB_HOST", default="localhost"),
         port=config("DB_PORT", default="5432"),
-        database=config("DB_NAME", default="servicios_db"),
+        database=config("DB_NAME", default="tallerBack"),
         user=config("DB_USER", default="postgres"),
         password=config("DB_PASSWORD", default="123456")
     )

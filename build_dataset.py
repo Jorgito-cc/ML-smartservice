@@ -29,14 +29,28 @@ def construir_dataset():
     print(f"📋 Solicitudes encontradas: {len(solicitudes)}")
     
     # 2. Cargar técnicos con ubicación
+    # Intenta con tecnico_ubicacion, si no existe usa valores por defecto
     sql_tecnicos = """
-        SELECT t.id_tecnico, u.lat AS tecnico_lat, u.lon AS tecnico_lon,
+        SELECT t.id_tecnico,
+               COALESCE(u.lat, 0) AS tecnico_lat,
+               COALESCE(u.lon, 0) AS tecnico_lon,
                t.calificacion_promedio, t.disponibilidad
         FROM tecnico t
         LEFT JOIN tecnico_ubicacion u ON u.id_tecnico = t.id_tecnico
         WHERE t.disponibilidad = TRUE
     """
-    tecnicos = query(sql_tecnicos)
+    
+    try:
+        tecnicos = query(sql_tecnicos)
+    except Exception as e:
+        print(f"⚠ Tabla tecnico_ubicacion no encontrada, intentando alternativa...")
+        # Alternativa: sin ubicación
+        sql_tecnicos = """
+            SELECT t.id_tecnico, 0 AS tecnico_lat, 0 AS tecnico_lon,
+                   t.calificacion_promedio, t.disponibilidad
+            FROM tecnico t
+        """
+        tecnicos = query(sql_tecnicos)
     
     if tecnicos.empty:
         print("⚠ No hay técnicos disponibles en la base de datos")

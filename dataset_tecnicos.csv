@@ -1,0 +1,4 @@
+id_solicitud,id_cliente,id_tecnico,id_categoria,distancia_km,rating_promedio,historico_rating,cantidad_calificaciones,precio_promedio,ofertas_totales,servicios_realizados,disponibilidad,target
+1,5,4,1,7179.276467080731,0.0,0.0,0,344.0,1,1,0,1
+1,5,6,1,7179.276467080731,2.0,0.0,0,0.0,0,0,0,0
+1,5,7,1,7179.276467080731,2.0,0.0,0,0.0,0,0,0,0
