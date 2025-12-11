@@ -46,9 +46,31 @@ def recomendar():
     """
     Endpoint para recomendar técnicos para una solicitud.
     
+    Ahora acepta TODOS los datos (lat/lon) directamente desde Node.
+    No hace queries adicionales a la BD.
+    
     Request Body:
         {
-            "id_solicitud": int
+            "id_solicitud": int,
+            "solicitud": {
+                "lat": float,
+                "lon": float,
+                "id_categoria": int,
+                "precio_ofrecido": float
+            },
+            "tecnicos": [
+                {
+                    "id_tecnico": int,
+                    "id_usuario": int,
+                    "nombre": str,
+                    "apellido": str,
+                    "disponibilidad": bool,
+                    "calificacion_promedio": float,
+                    "lat": float,
+                    "lon": float
+                },
+                ...
+            ]
         }
     
     Response:
@@ -75,7 +97,8 @@ def recomendar():
                 "message": "El modelo de machine learning no está cargado. Por favor, entrena el modelo primero."
             }), 503
         
-        resultados = recomendar_tecnicos(id_solicitud)
+        # 🔥 NUEVO: pasar el payload completo a recommender
+        resultados = recomendar_tecnicos(id_solicitud, payload=data)
         
         return jsonify({
             "id_solicitud": id_solicitud,

@@ -12,7 +12,7 @@ def get_connection():
         port=config("DB_PORT", default="5432"),
         database=config("DB_NAME", default="tallerBack"),
         user=config("DB_USER", default="postgres"),
-        password=config("DB_PASSWORD", default="123456")
+        password=config("DB_PASS", default="123456")
     )
 
 def query(sql):
